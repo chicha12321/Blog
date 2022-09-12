@@ -1,0 +1,8 @@
+com\tigran\blog\dao\PublishPostDAO.class
+com\tigran\blog\entity\PublishPost.class
+com\tigran\blog\configuration\MyWebInit.class
+com\tigran\blog\service\PublishPostService.class
+com\tigran\blog\controllers\MainController.class
+com\tigran\blog\configuration\MyConfig.class
+com\tigran\blog\service\PublishPostServiceImpl.class
+com\tigran\blog\dao\PublishPostDAOimpl.class
