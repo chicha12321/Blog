@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -16,66 +17,71 @@ public class MainController {
     private PublishPostService publishPostService;
 
     @GetMapping("/")
-    public String showAllPublishPosts(Model model){
-        List<PublishPost> allPublishPosts=publishPostService.getAllPosts();
-        model.addAttribute("allPosts",allPublishPosts);
+    public String showAllPublishPosts(Model model) {
+        List<PublishPost> allPublishPosts = publishPostService.getAllPosts();
+        model.addAttribute("allPosts", allPublishPosts);
         return "index";
     }
+
     @GetMapping("/addNewPost")
-    public String addNewPublishPost(Model model){
-        PublishPost post=new PublishPost();
-        model.addAttribute("publishPost",post);
+    public String addNewPublishPost(Model model) {
+        PublishPost post = new PublishPost();
+        model.addAttribute("publishPost", post);
         return "publish-info";
     }
 
     @RequestMapping("/savePost")
-    public String savePublishPost(@ModelAttribute("publishPost")PublishPost publishPost){
+    public String savePublishPost(@ModelAttribute("publishPost") PublishPost publishPost) {
         publishPostService.savePublishPost(publishPost);
         return "redirect:/";
     }
+
     @RequestMapping("/updatePost")
-    public String updatePublishPost(@RequestParam("publishPostId")int id, Model model){
-        PublishPost post=publishPostService.getPublishPost(id);
-        model.addAttribute("publishPost",post);
+    public String updatePublishPost(@RequestParam("publishPostId") int id, Model model) {
+        PublishPost post = publishPostService.getPublishPost(id);
+        model.addAttribute("publishPost", post);
         return "publish-info";
     }
 
     @RequestMapping("/removePost")
-    public String removePublishPost(@RequestParam("publishPostId")int id){
+    public String removePublishPost(@RequestParam("publishPostId") int id) {
         publishPostService.removePublishPost(id);
         return "redirect:/";
     }
 
     //добавляю новое
     @GetMapping("/publication")
-    public String showPublication(Model model){
-        List<PublishPost> allPosts=publishPostService.getAllPosts();
-        model.addAttribute("allPosts",allPosts);
+    public String showPublication(Model model) {
+        List<PublishPost> allPosts = publishPostService.getAllPosts();
+        model.addAttribute("allPosts", allPosts);
         return "allPublication";
     }
 
     @RequestMapping("/publication/{id}")
-    public String showAllPublishPosts(@PathVariable Integer id,Model model){
-        PublishPost post=publishPostService.getPublishPost(id);
-        model.addAttribute("modelOnePublication",post);
+    public String showAllPublishPostsAndComments(@PathVariable Integer id, Model model) {
+        PublishPost post = publishPostService.getPublishPost(id);
 
-        List<Comments> comments=publishPostService.getAllComments();
-        model.addAttribute("modelComments",comments);
+        model.addAttribute("modelOnePublication", post);
 
-//        List<Comments> comments=publishPostService.getAllPostsById(id);
-//        model.addAttribute("modelComments",comments);
-        //для добавления комментария
+        List<Comments> comments = publishPostService.getCommentsById(id);
+        model.addAttribute("modelComments", comments);
 
-        Comments comments1=new Comments();
-        model.addAttribute("comment",comments1);
+        Comments comments1 = new Comments();
+        model.addAttribute("comment", comments1);
+
         return "PublicationProfilePost";
     }
+
     @RequestMapping("/publication/{id}/saveComment")
-    public String saveComment(@ModelAttribute("comment")Comments comments,@PathVariable Integer id){
-        publishPostService.addCommentToPost(comments,id);
+    public String saveComment(@ModelAttribute("comment") Comments comments, @PathVariable Integer id) {
+        PublishPost post = publishPostService.getPublishPost(id);
+        comments.setPostId(post);
+        Date date = new Date();
+        date.getHours();
+        comments.setDateComment(date);
+        publishPostService.addCommentToPost(comments);
         return "redirect:/";
     }
-
 
 
 }

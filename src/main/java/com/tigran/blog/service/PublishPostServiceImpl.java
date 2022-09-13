@@ -39,23 +39,19 @@ public class PublishPostServiceImpl implements PublishPostService {
         publishPostDAO.removePublishPost(id);
     }
 
+
     @Override
     @Transactional
-    public List<Comments> getAllComments() {
-        return publishPostDAO.getAllComments();
-    }
-    @Override
-    @Transactional
-    public List<Comments> getAllPostsById(Integer id) {
-        return publishPostDAO.getAllCommentsById(id);
+    public List<Comments> getCommentsById(Integer id) {
+        return publishPostDAO.getCommentsById(id);
     }
 
 
 
     @Override
     @Transactional
-    public void addCommentToPost(Comments comments,Integer id) {
-        publishPostDAO.addCommentToPost(comments,id);
+    public void addCommentToPost(Comments comments) {
+        publishPostDAO.addCommentToPost(comments);
 
     }
 }

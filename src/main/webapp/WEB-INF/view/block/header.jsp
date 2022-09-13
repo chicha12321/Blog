@@ -13,7 +13,7 @@
             <div class="header__item headerlogo">
                 WDB
             </div>
-            <div class="header__item headerButton"><a href="publication">
+            <div class="header__item headerButton"><a href="/publication">
                 Publication</a></div>
             <div class="header__item headerButton"><a href="#">
                 Profile</a></div>

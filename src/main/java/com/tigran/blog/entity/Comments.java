@@ -21,8 +21,8 @@ public class Comments {
 
     private Date dateComment;
 //,targetEntity = PublishPost.class
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "postId")
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = PublishPost.class)
+    @JoinColumn(name = "postId",nullable = false)
     private  PublishPost postId;
 
     public Comments(String comment, Date dateComment) {
@@ -30,4 +30,13 @@ public class Comments {
         this.dateComment = dateComment;
     }
 
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                ", dateComment=" + dateComment +
+                ", postId=" + postId +
+                '}';
+    }
 }

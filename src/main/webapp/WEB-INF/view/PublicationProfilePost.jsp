@@ -59,15 +59,18 @@
     <div class="description">${modelOnePublication.description}</div>
     <hr>
     <div class="comments">
-        <c:forEach var="coment" items="${modelComments}">
-            <p>${coment.comment}</p>
-            <p>${coment.dateComment}</p>
-        </c:forEach>
+        <div class="outputComments">
+            <c:forEach var="coment" items="${modelComments}">
+                <text>${coment.comment}</text>
+                <text id="date">${coment.dateComment}</text>
+                <br>
+            </c:forEach>
+        </div>
         <div class="inputComments">
             <form:form action="${id}/saveComment" modelAttribute="comment">
-                <form:hidden path="id"></form:hidden>
                 <form:input path="comment" type="text" placeholder="Write your comments"/>
-                <input type="submit" value="Add">
+                <%--                <form:hidden modelAttribute="postAttribute"  path="id"></form:hidden>--%>
+                <input id="btn-1" type="submit" value="Add">
             </form:form>
         </div>
     </div>

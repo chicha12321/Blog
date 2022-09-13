@@ -15,10 +15,7 @@ public interface PublishPostDAO {
 
     void removePublishPost(int id);
 
-    //test
-    List<Comments> getAllComments();
-
-    List<Comments> getAllCommentsById(Integer id);
-    void addCommentToPost(Comments comments,Integer id);
+    List<Comments> getCommentsById(Integer id);
+    void addCommentToPost(Comments comments);
 
 }

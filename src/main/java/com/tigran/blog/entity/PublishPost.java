@@ -30,4 +30,14 @@ public class PublishPost {
         this.titlePost = titlePost;
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "PublishPost{" +
+                "id=" + id +
+                ", nameAuthor='" + nameAuthor + '\'' +
+                ", titlePost='" + titlePost + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -18,9 +18,9 @@ public interface PublishPostService {
     void removePublishPost(int id);
 
     //test
-    List<Comments> getAllComments();
 
-    List<Comments> getAllPostsById(Integer id);
-    void addCommentToPost(Comments comments,Integer id);
+
+    List<Comments> getCommentsById(Integer id);
+    void addCommentToPost(Comments comments);
 
 }

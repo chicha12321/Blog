@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Repository
 public class PublishPostDAOimpl implements PublishPostDAO {
@@ -45,32 +47,18 @@ public class PublishPostDAOimpl implements PublishPostDAO {
         query.executeUpdate();
     }
 
-    //test
+
     @Override
-    public List<Comments> getAllComments() {
+    public List<Comments> getCommentsById(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         List<Comments> commentsList = session.createQuery("from Comments", Comments.class).getResultList();
-        return commentsList;
+        return commentsList.stream().filter(comments -> Objects.equals(comments.getPostId().getId(), id)).collect(Collectors.toList());
     }
 
     @Override
-    public List<Comments> getAllCommentsById(Integer id) {
+    public void addCommentToPost(Comments comments) {
         Session session = sessionFactory.getCurrentSession();
-
-        // List<Comments >comments=session.createQuery(" select c from Comments c where c.postId=:postIndex", Comments.class)
-//        List<Comments >comments=session.createQuery(" from Comments  where postId=:postIndex")
-//                .setParameter("postIndex", id).getResultList();
-
-        List comments = session.createQuery(" from Comments  where Comments.postId=:index  ").setParameter("index", id).getResultList();
-        System.out.println(id);
-        return comments;
-    }
-
-    @Override
-    public void addCommentToPost(Comments comments,Integer id) {
-        Session session = sessionFactory.getCurrentSession();
-
-       Query query= session.createQuery("insert into Comments (comment,postId) select 'hello','2' from Comments ");
-        query.executeUpdate();
+        System.out.println(comments);
+        session.save(comments);
     }
 }

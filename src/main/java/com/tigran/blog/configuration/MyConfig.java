@@ -67,14 +67,11 @@ public class MyConfig extends WebMvcConfigurerAdapter  {
     }
 
 
-    //<mvc:resources  mapping="/resources/**" location="/resources/"></mvc:resources>
-    // equivalents for <mvc:resources/> tags
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
-//        registry.addResourceHandler("/resources/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
-//        registry.addResourceHandler("/image/**").addResourceLocations("/image/").setCachePeriod(31556926);
-//        registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
+
     }
 
     // equivalent for <mvc:default-servlet-handler/> tag
