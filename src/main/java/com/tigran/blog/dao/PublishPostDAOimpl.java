@@ -59,6 +59,8 @@ public class PublishPostDAOimpl implements PublishPostDAO {
     public void addCommentToPost(Comments comments) {
         Session session = sessionFactory.getCurrentSession();
         System.out.println(comments);
-        session.save(comments);
+        if(!comments.getComment().trim().isEmpty()){
+            session.save(comments);
+        }
     }
 }

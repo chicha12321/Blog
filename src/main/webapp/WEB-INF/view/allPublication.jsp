@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<jsp:include page="block/header.jsp"></jsp:include>
+<jsp:include page="../../resources/block/header.jsp"></jsp:include>
 
 <div id="grid">
 

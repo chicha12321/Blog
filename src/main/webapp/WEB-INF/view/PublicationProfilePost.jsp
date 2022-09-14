@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/publicationProfilePost.css"/>'>
 </head>
 <body>
-<jsp:include page="block/header.jsp"></jsp:include>
+<jsp:include page="../../resources/block/header.jsp"></jsp:include>
 <div class="container__informationProfile">
     <img class="img__icon" src='<c:url value="/resources/image/profile.png"></c:url>'/>
     <div class="textcols">

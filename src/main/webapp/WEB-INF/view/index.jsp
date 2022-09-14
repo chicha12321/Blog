@@ -5,12 +5,11 @@
 <html>
 <head>
     <title>homepage</title>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/main.css"/>'>
 </head>
 <body>
- <style>
-     <%@include file='css/main.css' %>
- </style>
-<jsp:include page="block/header.jsp"></jsp:include>
+
+ <jsp:include page="../../resources/block/header.jsp"></jsp:include>
 <h2>All publication of posts</h2>
 <br>
 <table>

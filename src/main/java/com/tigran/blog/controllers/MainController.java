@@ -80,7 +80,7 @@ public class MainController {
         date.getHours();
         comments.setDateComment(date);
         publishPostService.addCommentToPost(comments);
-        return "redirect:/";
+        return "redirect:/publication/{id}";
     }
 
 
